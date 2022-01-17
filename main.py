@@ -28,9 +28,9 @@ MENU = {
 }
 
 resources = {
-    "water": 300,
-    "milk": 200,
-    "coffee": 100,
+    "water": 3000,
+    "milk": 2000,
+    "coffee": 1000,
 }
 
 money = 0
@@ -38,7 +38,7 @@ can_make_drink = False
 
 
 def placing_order():
-    input_order = input("What would you like? (espresso/latte/cappuccino):").lower()
+    input_order = input(f"What would you like? (espresso($1.5) / latte($2.5) / cappuccino ($3.0):").lower()
 # TODO: 1. check resources needed for drink choice.
 
     if input_order == "off":

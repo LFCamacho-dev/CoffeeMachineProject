@@ -18,10 +18,16 @@ def make_payment(drink):
                      (float(pennies_received) * penny)
 
     print(f"Money received: ${money_received}")
-    print(f"The cost of your drink is: $ {main.MENU.get(drink, {}).get('cost')}")
+    # print(f"The cost of your drink is: $ {main.MENU.get(drink, {}).get('cost')}")
 
     if money_received >= main.MENU.get(drink, {}).get("cost"):
+        change = money_received - main.MENU.get(drink, {}).get("cost")
+        print(f"The cost of your drink was: $ {main.MENU.get(drink, {}).get('cost')}. Here's your change! ${change}")
+        main.money += main.MENU.get(drink, {}).get('cost')
+        print(f"you have made: $ {main.money}")
         print("making order!")  # TODO Finish the order, calculate change and create script for making order :)
+        # Start over
+        main.placing_order()
     else:
         print("Sorry that's not enough money. Money refunded.")
         main.placing_order()
