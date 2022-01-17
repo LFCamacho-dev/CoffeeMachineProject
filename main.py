@@ -1,5 +1,5 @@
+# Main script
 import payment
-
 
 MENU = {
     "espresso": {
@@ -28,9 +28,9 @@ MENU = {
 }
 
 resources = {
-    "water": 3000,
-    "milk": 2000,
-    "coffee": 1000,
+    "water": 200,
+    "milk": 200,
+    "coffee": 100,
 }
 
 money = 0
@@ -38,12 +38,13 @@ can_make_drink = False
 
 
 def placing_order():
-    input_order = input(f"What would you like? (espresso($1.5) / latte($2.5) / cappuccino ($3.0):").lower()
-# TODO: 1. check resources needed for drink choice.
+    print(resources)
+    input_order = input(f"Welcome to Cafe Python! "
+                        f"What would you like? (espresso($1.5) / latte($2.5) / cappuccino ($3.0):").lower()
 
     if input_order == "off":
         print("Shutting down...")
-        return
+        quit()
     elif input_order == "report":
         print_report()
         placing_order()
@@ -54,8 +55,6 @@ def placing_order():
     else:
         print("Wrong order, please try again")
         placing_order()
-
-# TODO: 2. Check resources sufficient to make drink order.
 
 
 def print_report():
@@ -71,7 +70,7 @@ def check_resources(input_order):
     water_needed = MENU.get(input_order, {}).get("ingredients").get("water")
     milk_needed = MENU.get(input_order, {}).get("ingredients").get("milk")
     coffee_needed = MENU.get(input_order, {}).get("ingredients").get("coffee")
-    bevy_cost = MENU.get(input_order, {}).get("cost")
+    # bevy_cost = MENU.get(input_order, {}).get("cost")
     water_available = resources.get("water")
     milk_available = resources.get("milk")
     coffee_available = resources.get("coffee")
@@ -93,6 +92,9 @@ def check_resources(input_order):
     global can_make_drink
     can_make_drink = True
 
+    return water_needed
+
 
 if __name__ == "__main__":
     placing_order()
+

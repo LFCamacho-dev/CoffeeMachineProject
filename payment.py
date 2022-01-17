@@ -1,4 +1,6 @@
+# Script that processes money transactions
 import main
+import preparation
 
 penny = 0.01
 nickel = 0.05
@@ -18,16 +20,19 @@ def make_payment(drink):
                      (float(pennies_received) * penny)
 
     print(f"Money received: ${money_received}")
-    # print(f"The cost of your drink is: $ {main.MENU.get(drink, {}).get('cost')}")
 
     if money_received >= main.MENU.get(drink, {}).get("cost"):
         change = money_received - main.MENU.get(drink, {}).get("cost")
-        print(f"The cost of your drink was: $ {main.MENU.get(drink, {}).get('cost')}. Here's your change! ${change}")
+        rounded_change = str(round(change, 2))
+        if change > 0:  # If the user gave more money than the actual cost of drink, give change back
+            print(f"The cost of your drink was: $ {main.MENU.get(drink, {}).get('cost')}. "
+                  f"Here's your change! ${rounded_change}")
         main.money += main.MENU.get(drink, {}).get('cost')
-        print(f"you have made: $ {main.money}")
-        print("making order!")  # TODO Finish the order, calculate change and create script for making order :)
+        # print("making order!")
+
+        preparation.preparing_drink(drink)
         # Start over
-        main.placing_order()
+        # main.placing_order()
     else:
         print("Sorry that's not enough money. Money refunded.")
         main.placing_order()
